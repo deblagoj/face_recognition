@@ -23,10 +23,10 @@ print(list_images)
 print(len(list_images))
 print("******************")
 
-face_names=[x.split('.')[0] for x in list_images]
-if '' in face_names: face_names.remove('')
-print(face_names)
-print(len(face_names))
+known_face_names=[x.split('.')[0] for x in list_images]
+if '' in known_face_names: known_face_names.remove('')
+print(known_face_names)
+print(len(known_face_names))
 
 
  #This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
@@ -45,17 +45,16 @@ import cv2
 import numpy as np
 # Get a reference to webcam #0 (the default one)
 video_capture = cv2.VideoCapture(0)
-face_name_encodings=[]
+known_face_encodings=[]
 i=0
-for face in face_names:
+for face in known_face_names:
     print(mypath+list_images[i])
     face_image_x = face_recognition.load_image_file(mypath+list_images[i])
-    face_name_encodings.append(face_recognition.face_encodings(face_image_x)[0])
+    known_face_encodings.append(face_recognition.face_encodings(face_image_x)[0])
     i=i+1
     print(face)
 
-known_face_encodings = face_name_encodings
-known_face_names = face_names
+
 
 print (known_face_encodings)
 
